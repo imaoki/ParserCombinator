@@ -2,7 +2,7 @@
 
 再帰下降構文解析のためのパーサコンビネータ。
 
-## 依存リポジトリ
+## 要件
 
 * [imaoki/Standard](https://github.com/imaoki/Standard)
 
@@ -17,3 +17,7 @@
 ## 使い方
 
 `Example`を参照。
+
+## ライセンス
+
+[MIT License](https://github.com/imaoki/ParserCombinator/blob/main/LICENSE)
