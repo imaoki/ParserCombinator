@@ -1,0 +1,50 @@
+        json = element ;
+
+       value = [ whitespace ] , ( object | array | string | number | boolean | "null" ) , [ whitespace ] ;
+
+      object = "{" , ( members | whitespace ) , "}" ;
+
+     members = member , { "," , member } ;
+
+      member = [ whitespace ] , string , [ whitespace ] , ":" , element ;
+
+       array = "[" , ( elements | whitespace ) , "]" ;
+
+    elements = element , { "," , element } ;
+
+     element = [ whitespace ] , value , [ whitespace ] ;
+
+      string = '"' , { character } , '"' ;
+
+   character = any_char - ( '"' | "\" | control_char ) | escape ;
+
+      escape = "\" , ( '"' | "\" | "/" | "b" | "f" | "n" | "r" | "t" ) | code_point ;
+
+  code_point = "\" , "u" , hex , hex , hex , hex ;
+
+         hex = digit
+             | "A" | "B" | "C" | "D" | "E" | "F"
+             | "a" | "b" | "c" | "d" | "e" | "f"
+             ;
+
+      number = [ "-" ] , integral , [ fraction ] , [ exponent ] ;
+
+    integral = zero | onenine , { digit } ;
+
+    fraction = "." , { digit }+ ;
+
+    exponent = ( "E" | "e" ) , [ sign ] , { digit }+ ;
+
+       digit = zero | onenine ;
+
+        zero = "0" ;
+
+     onenine = "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" ;
+
+        sign = "+" | "-" ;
+
+  whitespace = { " " | "\t" | "\r" | "\n" } ;
+
+control_char = ? #x0000 - #x001F ? ;
+
+    any_char = ? Any visible characters ? ;

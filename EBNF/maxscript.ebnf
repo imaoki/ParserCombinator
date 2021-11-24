@@ -1,0 +1,601 @@
+                        (* work in progress *)
+                 program = [ eol ] , { expr , [ eol ] } , eof ;
+
+                    expr = simple_expr
+                         | variable_decls
+                         | assignment
+                         | if_expr
+                         | while_loop
+                         | do_loop
+                         | for_loop
+                         | loop_exit
+                         | loop_continue
+                         | case_expr
+                         | struct_def
+                         | try_expr
+                         | function_def
+                         | function_return
+                         | context_expr
+                         | set_context
+                         | max_command
+                         | utility_def
+                         | rollout_def
+                         | tool_def
+                         | rcmenu_def
+                         | macroscript_def
+                         | attribute_def
+                         | plugin_def
+                         ;
+
+          variable_decls = primary_variable_decls
+                         | persistent_global_decls
+                         ;
+
+  primary_variable_decls = [ ( "global" | "local" ) , [ eol ] ] , decl , { "," , [ eol ] , decl } ;
+
+ persistent_global_decls = "persistent" , [ eol ] , "global" , [ eol ] , decl , { "," , [ eol ] , decl } ;
+
+                    decl = var_name , [ "=" , [ eol ] , expr ] ;
+
+     clause_global_decls = "global" , [ eol ] , clause_decl , { [ eol ] , "," , [ eol ] , clause_decl } ;
+
+      clause_local_decls = "local" , [ eol ] , clause_decl , { [ eol ] , "," , [ eol ] , clause_decl } ;
+
+             clause_decl = var_name , [ [ eol ] , "=" , [ eol ] , expr ] ;
+
+                var_name = identifier - keyword
+                         | quoted_name
+                         ;
+
+              assignment = destination , ( "=" | "+=" | "-=" | "*=" | "/=" ) , [ eol ] , expr ;
+
+             destination = var_name
+                         | accessor
+                         ;
+
+                 if_expr = "if" , [ eol ] , expr , [ eol ] , "then" , [ eol ] , expr , [ [ eol ] , "else" , [ eol ] , expr ]
+                         | "if" , [ eol ] , expr , [ eol ] , "do" , [ eol ] , expr
+                         ;
+
+              while_loop = "while" , [ eol ] , expr , [ eol ] , "do" , [ eol ] , expr ;
+
+                 do_loop = "do" , [ eol ] , expr , [ eol ] , "while" , [ eol ] , expr ;
+
+                for_loop = "for" , [ eol ] , var_name , [ eol ] , ( "in" | "=" ) , [ eol ] , source , ( "collect" | "do" ) , [ eol ] , expr ;
+
+                  source = expr , [ eol ] , "to" , [ eol ] , expr , [ eol ] , [ "by" , [ eol ] , expr , [ eol ] ] , [ ( "where" | "while" ) , [ eol ] , expr , [ eol ] ]
+                         | expr , [ eol ] , [ ( "where" | "while" ) , [ eol ] , expr , [ eol ] ]
+                         ;
+
+               loop_exit = "exit" , [ "with" , expr ] ;
+
+           loop_continue = "continue" ;
+
+               case_expr = "case" , [ eol ] , [ expr , [ eol ] ] , "of" , [ eol ] , "(" , [ eol ] , { case_item , [ eol ] } , ")" ;
+
+               case_item = ( "default" , [ eol ] | factor ) , ":" , [ eol ] , expr ;
+
+              struct_def = "struct" , [ eol ] , var_name , [ eol ] , [ "extends" , [ eol ] , var_name , [ eol ] ] , "(" , [ eol ] , member , [ eol ] , { "," , [ eol ] , member , [ eol ] } , ")" ;
+
+                  member = [ ( "private" | "public" ) , [ eol ] ] , member_decl ;
+
+             member_decl = struct_property
+                         | function_def
+                         | struct_handler
+                         ;
+
+         struct_property = var_name , [ eol ] , [ "=" , [ eol ] , expr ] ;
+
+          struct_handler = "on" , [ eol ] , var_name , [ eol ] , "do" , [ eol ] , expr ;
+
+                try_expr = "try" , [ eol ] , expr , [ eol ] , "catch" , [ eol ] , expr ;
+
+            function_def = [ "mapped" , [ eol ] ] , ( "fn" | "function" ) , [ eol ] , var_name , [ eol ] , { arg , [ eol ] } , "=" , [ eol ] , expr ;
+
+                     arg = var_name , [ ":" , [ [ eol ] , operand ] ] ;
+
+         function_return = "return" , expr ;
+
+            context_expr = context , { [ eol ] , [ "," , [ eol ] ] , context } , [ eol ] , expr ;
+
+                 context = animate_context
+                         | at_context
+                         | in_context
+                         | coordsys_context
+                         | about_context
+                         | default_action_context
+                         | with_context
+                         | undo_context
+                         ;
+
+         animate_context = [ "with" , [ eol ] ] , "animate" , [ eol ] , boolean_operand ;
+
+              at_context = "at" , [ eol ] , ( "level" | "time" ) , [ eol ] , operand ;
+
+              in_context = "in" , [ eol ] , operand ;
+
+        coordsys_context = [ "in" , [ eol ] ] , "coordsys" , [ eol ] , ( "grid" | "local" | "parent" | "screen" | "world" | operand ) ;
+
+           about_context = "about" , [ eol ] , ( "coordsys" | "pivot" | "selection" | operand ) ;
+
+  default_action_context = "with" , [ eol ] , "defaultaction" , [ eol ] , name_literal ;
+
+            with_context = "with" , [ eol ] , ( "macrorecorderemitterenabled" | "mxscallstackcaptureenabled" | "printallelements" | "quiet" | "redraw" ) , [ eol ] , boolean_operand ;
+
+            undo_context = [ "with" , [ eol ] ] , "undo" , [ eol ] , [ ( string_literal | keyword_parameter ) , [ eol ] ] , boolean_operand
+                         | "undo" , [ eol ] , var_name , [ eol ] , boolean_operand
+                         ;
+
+         boolean_operand = boolean_literal
+                         | var_name
+                         | expr_seq
+                         | last_listener_result
+                         | accessor
+                         ;
+
+             set_context = "set" , [ eol ] , context ;
+
+             max_command = "max" , { command_name }+ ;
+
+            command_name = var_name
+                         | last_listener_result
+                         | command_2x
+                         | command_keyword
+                         ;
+
+              command_2x = "2" , "x" ;
+
+         command_keyword = "about"
+                         | "and"
+                         | "as"
+                         | "by"
+                         | "from"
+                         | "in"
+                         | "on"
+                         | "set"
+                         | "to"
+                         | "tool"
+                         | "undo"
+                         | "utility"
+                         ;
+
+             utility_def = "utility" , [ eol ] , var_name , [ eol ] , string_literal , [ eol ] , { keyword_parameter , [ eol ] } , "(" , [ eol ] , { utility_clause , [ eol ] } , ")" ;
+
+          utility_clause = rollout_def
+                         | rollout_clause
+                         ;
+
+             rollout_def = "rollout" , [ eol ] , var_name , [ eol ] , rollout_operand , [ eol ] , { keyword_parameter , [ eol ] } , "(" , [ eol ] , { rollout_clause , [ eol ] } , ")" ;
+
+         rollout_operand = string_literal
+                         | var_name
+                         | expr_seq
+                         | last_listener_result
+                         | accessor
+                         ;
+
+          rollout_clause = clause_global_decls
+                         | clause_local_decls
+                         | function_def
+                         | struct_def
+                         | tool_def
+                         | rollout_def
+                         | item_group
+                         | rollout_item
+                         | rollout_handler
+                         ;
+
+              item_group = "group" , [ eol ] , string_literal , [ eol ] , "(" , [ eol ] , { rollout_item , [ eol ] } , ")" ;
+
+         rollout_handler = "on" , [ eol ] , var_name , [ eol ] , var_name , [ eol ] , { var_name , [ eol ] } , "do" , [ eol ] , expr ;
+
+            rollout_item = item_type , [ eol ] , var_name , [ item_caption ] , { [ eol ] , keyword_parameter } ;
+
+               item_type = "activexcontrol"
+                         | "angle"
+                         | "bitmap"
+                         | "button"
+                         | "checkbox"
+                         | "checkbutton"
+                         | "colorpicker"
+                         | "combobox"
+                         | "curvecontrol"
+                         | "dotnetcontrol"
+                         | "dropdownlist"
+                         | "edittext"
+                         | "groupbox"
+                         | "hyperlink"
+                         | "imgtag"
+                         | "label"
+                         | "listbox"
+                         | "mapbutton"
+                         | "materialbutton"
+                         | "multilistbox"
+                         | "pickbutton"
+                         | "progressbar"
+                         | "radiobuttons"
+                         | "slider"
+                         | "spinner"
+                         | "subrollout"
+                         | "timer"
+                         ;
+
+            item_caption = [ eol ] , string_literal
+                         | var_name
+                         | accessor
+                         ;
+
+              rcmenu_def = "rcmenu" , [ eol ] , var_name , [ eol ] , "(" , [ eol ] , { rcmenu_clause , [ eol ] } , ")" ;
+
+           rcmenu_clause = clause_local_decls
+                         | function_def
+                         | struct_def
+                         | rcmenu_item
+                         | rcmenu_handler
+                         ;
+
+          rcmenu_handler = "on" , [ eol ] , var_name , [ eol ] , var_name , [ eol ] , "do" , [ eol ] , expr ;
+
+             rcmenu_item = rcmenu_menuitem
+                         | rcmenu_separator
+                         | rcmenu_submenu
+                         ;
+
+         rcmenu_menuitem = "menuitem" , [ eol ] , var_name , [ [ eol ] , string_literal ] , { [ eol ] , keyword_parameter } ;
+
+        rcmenu_separator = "separator" , [ eol ] , var_name , { [ eol ] , keyword_parameter } ;
+
+          rcmenu_submenu = "submenu" , [ eol ] , string_literal , [ eol ] , { keyword_parameter , [ eol ] } , "(" , [ eol ] , { rcmenu_item , [ eol ] } , ")" ;
+
+         macroscript_def = "macroscript" , [ eol ] , var_name , [ eol ] , { keyword_parameter , [ eol ] } , "(" , [ eol ] , { macroscript_clause , [ eol ] } , ")" ;
+
+      macroscript_clause = simple_expr
+                         | variable_decls
+                         | assignment
+                         | if_expr
+                         | while_loop
+                         | do_loop
+                         | for_loop
+                         | loop_exit
+                         | loop_continue
+                         | case_expr
+                         | struct_def
+                         | try_expr
+                         | function_def
+                         | function_return
+                         | context_expr
+                         | set_context
+                         | max_command
+                         | utility_def
+                         | rollout_def
+                         | tool_def
+                         | rcmenu_def
+                         | attribute_def
+                         | plugin_def
+                         | macroscript_handler
+                         ;
+
+     macroscript_handler = "on" , [ eol ] , var_name , [ eol ] , { arg , [ eol ] } , ( "do" | "return" ) , [ eol ] , expr ;
+
+                tool_def = "tool" , [ eol ] , var_name , [ eol ] , { keyword_parameter , [ eol ] } , "(" , [ eol ] , { tool_clause , [ eol ] } , ")" ;
+
+             tool_clause = clause_local_decls
+                         | function_def
+                         | struct_def
+                         | event_handler
+                         ;
+
+           attribute_def = "attributes" , [ eol ] , var_name , [ eol ] , { keyword_parameter , [ eol ] } , "(" , [ eol ] , { attribute_clause , [ eol ] } , ")" ;
+
+        attribute_clause = clause_local_decls
+                         | function_def
+                         | struct_def
+                         | parameters
+                         | rollout_def
+                         | event_handler
+                         ;
+
+              plugin_def = "plugin" , [ eol ] , var_name , [ eol ] , var_name , [ eol ] , { keyword_parameter , [ eol ] } , "(" , [ eol ] , { plugin_clause , [ eol ] } , ")" ;
+
+           plugin_clause = clause_local_decls
+                         | function_def
+                         | struct_def
+                         | parameters
+                         | tool_def
+                         | rollout_def
+                         | event_handler
+                         ;
+
+              parameters = "parameters" , [ eol ] , var_name , [ eol ] , { keyword_parameter , [ eol ] } , "(" , [ eol ] , { param_clause , [ eol ] } , ")" ;
+
+            param_clause = param_defs
+                         | param_handler
+                         ;
+
+              param_defs = var_name , { [ eol ] , keyword_parameter }+ ;
+
+           param_handler = "on" , [ eol ] , var_name , [ eol ] , var_name , [ eol ] , { var_name , [ eol ] } , "do" , [ eol ] , expr ;
+
+           event_handler = "on" , [ eol ] , { var_name , [ eol ] }+ , "do" , [ eol ] , expr ;
+
+             simple_expr = operand
+                         | math_expr
+                         | compare_expr
+                         | logical_expr
+                         | function_call
+                         | expr_seq
+                         ;
+
+               math_expr = math_operand , { ( "+" | "-" | "*" | "/" | "^" | "as" ) , [ eol ] , math_operand }+ ;
+
+            math_operand = operand
+                         | function_call
+                         ;
+
+            logical_expr = [ "not" , [ eol ] ] , logical_operand , { ( "or" | "and" ) , [ eol ] , [ "not" , [ eol ] ] , logical_operand } ;
+
+         logical_operand = operand
+                         | compare_expr
+                         | function_call
+                         ;
+
+            compare_expr = compare_operand , [ ( ">" | "<" | ">=" | "<=" ) , [ eol ] , compare_operand ] , { ( "==" | "!=" ) , [ eol ] , compare_operand } ;
+
+         compare_operand = math_expr
+                         | operand
+                         | function_call
+                         ;
+
+           function_call = function_operand , ( "(" , ")" | { parameter }+ ) ;
+
+        function_operand = var_name
+                         | expr_seq
+                         | last_listener_result
+                         | accessor
+                         ;
+
+               parameter = operand
+                         | keyword_parameter
+                         ;
+
+       keyword_parameter = var_name , ":" , [ eol ] , operand ;
+
+                 operand = factor
+                         | accessor
+                         ;
+
+                accessor = factor , { "." , [ eol ] , var_name | "[" , [ eol ] , expr , "]" }+ ;
+
+                  factor = number_literal
+                         | string_literal
+                         | time_literal
+                         | path_name_literal
+                         | boolean_literal
+                         | ok_literal
+                         | undefined_literal
+                         | unsupplied_literal
+                         | var_name
+                         | name_literal
+                         | array_literal
+                         | bitarray_literal
+                         | point4_literal
+                         | point3_literal
+                         | point2_literal
+                         | unary_expr
+                         | global_namespace_alias
+                         | addressof_expr
+                         | indirection_expr
+                         | expr_seq
+                         | last_listener_result
+                         ;
+
+              unary_expr = "-" , [ eol ] , expr ;
+
+  global_namespace_alias = "::" , [ eol ] , var_name ;
+
+          addressof_expr = "&" , [ eol ] , var_name ;
+
+        indirection_expr = "*" , [ eol ] , var_name ;
+
+                expr_seq = "(" , [ eol ] , { expr , [ eol ] } , ")" ;
+
+            name_literal = "#" , var_name ;
+
+          number_literal = [ "-" ] , ( integer_literal | real_literal ) ;
+
+         integer_literal = ( hexadecimal | digits ) , [ "L" | "P" ] ;
+
+            real_literal = ( decimal | digits ) , [ ( "e" | "E" | "d" | "D" ) , [ "+" | "-" ] , digits ] ;
+
+          string_literal = '@"' , { any_char - '"' } , '"'
+                         | '"' , { any_char - '"' | '\"' | "\n" | "\r" | "\t" | "\*" | "\?" | "\\" | "\%" | "\x" , [ hex_digits ] } , '"'
+                         ;
+
+            time_literal = [ "-" ] , ( hexadecimal_time_literal | decimal_time_literal | smpte_literal | normalized_time_literal ) ;
+
+hexadecimal_time_literal = hexadecimal , ( "m" | "s" | "t" ) ;
+
+    decimal_time_literal = { ( decimal | digits ) , ( "m" | "s" | "f" | "t" ) }+ ;
+
+      smpte_time_literal = digits , ":" , decimal ;
+
+ normalized_time_literal = ( decimal | digits ) , "n" ;
+
+         boolean_literal = "false" | "off" | "on" | "true" ;
+
+              ok_literal = "ok" ;
+
+       undefined_literal = "undefined" ;
+
+      unsupplied_literal = "unsupplied" ;
+
+    last_listener_result = "?" ;
+
+          point4_literal = "[" , [ eol ] , expr , "," , [ eol ] , expr , "," , [ eol ] , expr , "," , [ eol ] , expr , "]" ;
+
+          point3_literal = "[" , [ eol ] , expr , "," , [ eol ] , expr , "," , [ eol ] , expr , "]" ;
+
+          point2_literal = "[" , [ eol ] , expr , "," , [ eol ] , expr , "]" ;
+
+           array_literal = "#" , [ eol ] , "(" , [ eol ] , [ expr , [ eol ] , { "," , [ eol ] , expr , [ eol ] } ] , ")" ;
+
+        bitarray_literal = "#" , [ eol ] , "{" , [ eol ] , [ bitarray_selection , { "," , [ eol ] , bitarray_selection } ] , "}" ;
+
+      bitarray_selection = expr , [ ".." , [ eol ] , expr ] ;
+
+       path_name_literal = "$" , [ path ] ;
+
+                    path = [ objectset ] , [ "/" ] , [ levels ] , level ;
+
+                  levels = level , { "/" , level } ;
+
+                   level = "'" , { ( any_char - "'" ) | "\*" | "\?" | "\\" } , "'"
+                         | { alphanumeric | "_" | "*" | "?" | "\" }
+                         | "..."
+                         ;
+
+               objectset = "cameras"
+                         | "geometry"
+                         | "helpers"
+                         | "lights"
+                         | "objects"
+                         | "selection"
+                         | "shapes"
+                         | "spacewarps"
+                         | "systems"
+                         ;
+
+                 comment = doc_comment
+                         | delimited_comment
+                         | single_line_comment
+                         ;
+
+             doc_comment = "/*-" , { any_char - "*/" } , "*/" ;
+
+       delimited_comment = "/*" , { any_char - "*/" } , "*/" ;
+
+     single_line_comment = "--" , { any_char - new_line } ;
+
+              identifier = ( letter | "_" ) , { alphanumeric | "_" } ;
+
+             quoted_name = "'" , { any_char - "'" } , "'" ;
+
+            alphanumeric = letter | digit ;
+
+                 decimal = digits , "." , [ digits ]
+                         | "." , digits
+                         ;
+
+             hexadecimal = "0" , ( "x" | "X" ) , [ hex_digits ] ;
+
+                  digits = { digit }+ ;
+
+              hex_digits = { hex_digit }+ ;
+
+                   digit = ? 0-9 ? ;
+
+               hex_digit = ? a-fA-F0-9 ? ;
+
+                  letter = ? a-zA-Z ? ;
+
+              (* whitespace = { space }+ | "\" , { space } , { new_line }+ ; *)
+              whitespace = { continuation | space | new_line }+ ;
+
+            continuation = "\" , { space } , new_line ;
+
+                   space = " " | "\t" ;
+
+                     eol = ";" | { new_line }+ ;
+
+                new_line = "\n" ;
+
+                operator = "!="
+                         | "&"
+                         | "*"
+                         | "*="
+                         | "+"
+                         | "+="
+                         | "-"
+                         | "-="
+                         | "/"
+                         | "/="
+                         | "<"
+                         | "<="
+                         | "="
+                         | "=="
+                         | ">"
+                         | ">="
+                         ;
+
+              punctuator = "#"
+                         | "$"
+                         | "("
+                         | ")"
+                         | ","
+                         | "."
+                         | ":"
+                         | ";"
+                         | "?"
+                         | "["
+                         | "]"
+                         | "{"
+                         | "}"
+                         ;
+
+                 keyword = "about"
+                         | "and"
+                         | "animate"
+                         | "as"
+                         | "at"
+                         | "attributes"
+                         | "by"
+                         | "case"
+                         | "catch"
+                         | "collect"
+                         | "continue"
+                         | "coordsys"
+                         | "do"
+                         | "else"
+                         | "exit"
+                         | "fn"
+                         | "for"
+                         | "from"
+                         | "function"
+                         | "global"
+                         | "if"
+                         | "in"
+                         | "local"
+                         | "macroscript"
+                         | "mapped"
+                         | "max"
+                         | "not"
+                         | "of"
+                         | "off"
+                         | "on"
+                         | "or"
+                         | "parameters"
+                         | "persistent"
+                         | "plugin"
+                         | "private"
+                         | "public"
+                         | "rcmenu"
+                         | "return"
+                         | "rollout"
+                         | "set"
+                         | "struct"
+                         | "then"
+                         | "throw"
+                         | "to"
+                         | "tool"
+                         | "try"
+                         | "undo"
+                         | "utility"
+                         | "when"
+                         | "where"
+                         | "while"
+                         | "with"
+                         ;
+
+                     eof = ? End of file ? ;
+
+                any_char = ? Any visible characters ? ;

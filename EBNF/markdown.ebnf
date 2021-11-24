@@ -1,0 +1,133 @@
+                             (* work in progress *)
+                     document = { block }+ ;
+
+                        block = container_block | leaf_block ;
+
+                             (* Container blocks *)
+              container_block = block_quote
+                              | bullet_list
+                              | ordered_list
+                              ;
+
+                  block_quote = { block_quote_marker , inline_line }+ ;
+           block_quote_marker = ">" , [ " " ] ;
+
+                  bullet_list = { bullet_list_item , [ blank_line ] }+ ;
+             bullet_list_item = bullet_list_marker , "   " , list_item_leaf_block ;
+
+                 ordered_list = { ordered_list_item , [ blank_line ] }+ ;
+            ordered_list_item = ordered_list_marker , "  " , list_item_leaf_block ;
+
+           bullet_list_marker = "-" | "+" | "*" ;
+          ordered_list_marker = digit , "." | ")" ;
+
+         list_item_leaf_block = atx_heading | list_item_fenced_code_block | list_item_paragraph ;
+  list_item_fenced_code_block = "```" , [ { space } , backtick_info_string ] , line_ending , { "    " , line } , "    " , "```" , line_ending
+                              | "~~~" , [ { space } , tilde_info_string ] , line_ending , { "    " , line } , "    " , "~~~" , line_ending
+                              ;
+          list_item_paragraph = inline_line , { "    " , inline_line } ;
+
+                             (* Leaf blocks *)
+                   leaf_block = thematic_break
+                              | atx_heading
+                              | indented_code_block
+                              | fenced_code_block
+                              | link_reference_definition
+                              | paragraph
+                              | blank_lines
+                              ;
+
+               thematic_break = ( "***" | "---" | "___" ) , { - } , { space } , line_ending ;
+
+                  atx_heading = atx_heading1 | atx_heading2 | atx_heading3 | atx_heading4 | atx_heading5 | atx_heading6 ;
+                 atx_heading1 = "#" , space , textual_content , atx_closing_sequence ;
+                 atx_heading2 = "##" , space , textual_content , atx_closing_sequence ;
+                 atx_heading3 = "###" , space , textual_content , atx_closing_sequence ;
+                 atx_heading4 = "####" , space , textual_content , atx_closing_sequence ;
+                 atx_heading5 = "#####" , space , textual_content , atx_closing_sequence ;
+                 atx_heading6 = "######" , space , textual_content , atx_closing_sequence ;
+         atx_closing_sequence = [ space , { "#" } , { space } ] , line_ending ;
+
+          indented_code_block = blank_line , { indented_chunk , blank_line }+ ;
+               indented_chunk = { "    " , { space } , non_blank_line }+ ;
+
+            fenced_code_block = "```" , [ { space } , backtick_info_string ] , line_ending , { line } , "```" , line_ending
+                              | "~~~" , [ { space } , tilde_info_string ] , line_ending , { line } , "~~~" , line_ending
+                              ;
+
+    link_reference_definition = link_label , ":" , link_destination , [ whitespace , [ link_title ] ] , [ whitespace ] , line_ending ;
+
+                    paragraph = { inline_line }+ ;
+
+                             (* Blank lines *)
+                  blank_lines = { blank_line }+ ;
+                   blank_line = { ( space | tab ) } , line_ending ;
+               non_blank_line = non_whitespace_character , { character_without_linebreak } , line_ending ;
+
+                             (* Info string *)
+         backtick_info_string = { any_char - ( "`" | space | line_ending ) }+ ;
+            tilde_info_string = { any_char - ( space | line_ending ) }+ ;
+
+                             (* Inlines *)
+                       (* inline = code_span | emphasis | strong_emphasis | inline_link | full_reference_link | image | line_break | textual_content ; *)
+                  inline_line = { inline_without_line_break }+ , line_break ;
+    inline_without_line_break = code_span | emphasis | strong_emphasis | inline_link | full_reference_link | image | textual_content ;
+                    code_span = "`" , { character_without_linebreak | "\`" }+ , "`" ;
+                     emphasis = "*" , { character_without_linebreak | "\*" }+ , "*" ; (* Nesting is not supported *)
+              strong_emphasis = "**" , { character_without_linebreak | "\*\*" }+ , "**" ; (* Nesting is not supported *)
+
+                             (* Links *)
+                  inline_link = link_text , link_component ;
+          full_reference_link = link_text , link_label ;
+                    link_text = "[" , textual_content , "]" ;
+                   link_label = "[" , { non_whitespace_character }+ , "]" ;
+
+                             (* Images *)
+                        image = image_description , link_component ;
+            image_description = "![" , textual_content , "]" ;
+
+                             (* Link components *)
+               link_component = "(" , [ whitespace ] , [ link_destination ] , [ [ whitespace ] , link_title ] , [ whitespace ] , ")" ;
+             link_destination = "<" , { ( any_char - ( line_ending | "<" | ">" ) ) | "\<" | "\>" } , ">"
+                              | { ( any_char - ( ascii_control_character | space | "(" | ")" ) ) | backslash_escape }
+                              ; (* Nesting is not supported *)
+                   link_title = '"' , { ( any_char - '"' ) | '\"' } , '"'
+                              | "'" , { ( any_char - "'" ) | "\'" } , "'"
+                              | "(" , { ( any_char - ( "(" | ")" ) ) | "\(" | "\)" } , ")"
+                              ;
+
+                             (* Line *)
+                         line = { any_char - line_ending } , line_ending ;
+
+                             (* Line ending *)
+                  line_ending = newline | carriage_return ;
+
+                             (* Textual content *)
+              textual_content = { character_without_linebreak }+ ;
+  character_without_linebreak = ? Unicode code point except newline ( U+000A ) and carriage return ( U+000D ) ? ;
+
+                             (* Unicode whitespace *)
+           unicode_whitespace = { unicode_whitespace_character }+ ;
+ unicode_whitespace_character = ? any code point in the Unicode Zs class ? | tab | carriage_return | newline | form_feed ;
+
+                             (* Whitespace *)
+                   whitespace = { whitespace_character }+ ;
+     non_whitespace_character = ? any_char that is not a whitespace_character ? ;
+         whitespace_character = newline | carriage_return | space | tab | vertical_tabulation | form_feed ;
+
+                      newline = U+000A ;
+              carriage_return = U+000D ;
+                        space = U+0020 ;
+                          tab = U+0009 ;
+          vertical_tabulation = U+000B ;
+                    form_feed = U+000C ;
+
+                   line_break = hard_line_break | soft_line_break ;
+              hard_line_break = ( "  " | "\\" ) , "\n" ;
+              soft_line_break = "\n" ;
+
+             backslash_escape = "\" , ascii_punctuation_character ;
+
+      ascii_control_character = ? U+0000 - U+001F ? | U+007F ;
+  ascii_punctuation_character = "!" | '"' | "#" | "$" | "%" | "&" | "'" | "(" | ")" | "*" | "+" | "," | "-" | "." | "/" | ":" | ";" | "<" | "=" | ">" | "?" | "@" | "[" | "\" | "]" | "^" | "_" | "`" | "{" | "|" | "}" | "~" ;
+unicode_punctuation_character = ascii_punctuation_character | ? anything in the Unicode Classes Pc , Pd , Pe , Pf , Pi , Po , Ps ? ;
