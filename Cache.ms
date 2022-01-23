@@ -27,7 +27,7 @@ struct CacheStruct (
     local key = this.generateKey parser start
     result.Hit = hasDictValue this.data key
     if result.Hit do (
-      result.Cache = GetDictValue this.data key
+      result.Cache = this.data[key]
     )
     result
   ),
@@ -42,7 +42,7 @@ struct CacheStruct (
   */
   public fn Write parser start end result = (
     local key = this.generateKey parser start
-    PutDictValue this.data key (DataPair End:end Value:result)
+    this.data[key] = DataPair End:end Value:result
     ok
   ),
 

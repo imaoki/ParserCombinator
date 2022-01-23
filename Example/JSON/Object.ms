@@ -124,7 +124,7 @@ struct ObjectStruct (
     if this.canConvertToDictionary result then (
       local dict = Dictionary #String
       for pair in result do (
-        PutDictValue dict pair[1] pair[2]
+        dict[pair[1]] = pair[2]
       )
       dict
     )
