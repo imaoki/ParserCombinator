@@ -34,3 +34,5 @@ struct NotCollectStruct (
 
   on Create do ()
 )
+format "[define]::NotCollectStruct\n"
+::NotCollectStruct

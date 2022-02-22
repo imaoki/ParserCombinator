@@ -528,3 +528,5 @@ struct ParserCombinatorStruct (
     this.tokenDef = fileIn @"Parser\Token.ms"
   )
 )
+format "[define]::ParserCombinatorStruct\n"
+::ParserCombinatorStruct
