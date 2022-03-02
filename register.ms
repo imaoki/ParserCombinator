@@ -5,8 +5,8 @@
   fileIn "NotCollect.ms"
   fileIn "ParserCombinator.ms"
 
-  if isProperty ::startupScriptLoader "RegisterScript" do (
-    ::startupScriptLoader.RegisterScript (getSourceFileName())
+  if isProperty ::startupLoader "RegisterScript" do (
+    ::startupLoader.RegisterScript (getSourceFileName())
   )
   ok
 )
