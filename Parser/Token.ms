@@ -37,7 +37,7 @@ struct TokenStruct (
   public fn Dump indent:"" out:listener = (
     format "%TokenStruct\n" indent to:out
     format "%  Debug:%\n" indent this.Debug to:out
-    format "%  Pattern:\"%\"\n" indent (::stringUtility.EscapeBackslash this.Pattern) to:out
+    format "%  Pattern:\"%\"\n" indent (::std.StringUtility.EscapeBackslash this.Pattern) to:out
     format "%  IgnoreCase:%\n" indent this.IgnoreCase to:out
     ok
   ),

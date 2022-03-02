@@ -159,7 +159,7 @@ struct ValueStruct (
   ),
 
   on Create do (
-    local pathUtility = ::PathUtilityStruct (getSourceFileName())
+    local pathUtility = ::std.PathUtilityStruct (getSourceFileName())
     this.pc = (fileIn (pathUtility.GetFullPath @"..\..\ParserCombinator.ms"))()
     this.arrayParser = (fileIn "Array.ms")()
     this.booleanParser = (fileIn (pathUtility.GetFullPath @"..\Boolean.ms"))()

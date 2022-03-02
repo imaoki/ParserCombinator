@@ -6,7 +6,7 @@
   local sw = DotNetObject "System.Diagnostics.Stopwatch"
 
   local currentFile = getSourceFileName()
-  local pathUtility = ::PathUtilityStruct currentFile
+  local pathUtility = ::std.PathUtilityStruct currentFile
 
   local actual
   local expected
@@ -25,7 +25,7 @@
   local join
   fn join separator result = (
     if classOf result == Array then (
-      ::stringUtility.Join result separator:separator
+      ::std.StringUtility.Join result separator:separator
     )
     else (
       ::FailureStruct()

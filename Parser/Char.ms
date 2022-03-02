@@ -51,13 +51,13 @@ struct CharStruct (
   public fn Dump indent:"" out:listener = (
     format "%CharStruct\n" indent to:out
     format "%  Debug:%\n" indent this.Debug to:out
-    format "%  Pattern:\"%\"\n" indent (::stringUtility.EscapeBackslash this.Pattern) to:out
+    format "%  Pattern:\"%\"\n" indent (::std.StringUtility.EscapeBackslash this.Pattern) to:out
     format "%  Except:%\n" indent this.Except to:out
     format "%  patternChars:#(" indent to:out
     for i = 1 to this.patternChars.Count do (
       format "%\"%\"" \
           (if i == 1 then "" else ", ") \
-          (::stringUtility.EscapeBackslash this.patternChars[i]) \
+          (::std.StringUtility.EscapeBackslash this.patternChars[i]) \
           to:out
     )
     format ")\n" to:out
@@ -82,6 +82,6 @@ struct CharStruct (
 
   on Create do (
     this.anyCharParser = (fileIn "AnyChar.ms")()
-    this.patternChars = ::stringUtility.ToCharArray this.Pattern
+    this.patternChars = ::std.StringUtility.ToCharArray this.Pattern
   )
 )

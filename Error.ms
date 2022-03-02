@@ -37,11 +37,11 @@ struct ErrorStruct (
   */
   public fn Dump indent:"" out:listener = (
     format "%ErrorStruct\n" indent to:out
-    format "%  Expected:\"%\"\n" indent (::stringUtility.EscapeBackslash this.Expected) to:out
+    format "%  Expected:\"%\"\n" indent (::std.StringUtility.EscapeBackslash this.Expected) to:out
     format "%  LineNumber:%\n" indent this.LineNumber to:out
-    format "%  LineText:\"%\"\n" indent (::stringUtility.EscapeBackslash this.LineText) to:out
+    format "%  LineText:\"%\"\n" indent (::std.StringUtility.EscapeBackslash this.LineText) to:out
     format "%  Offset:%\n" indent this.Offset to:out
-    format "%  OffsetChar:\"%\"\n" indent (::stringUtility.EscapeBackslash this.OffsetChar) to:out
+    format "%  OffsetChar:\"%\"\n" indent (::std.StringUtility.EscapeBackslash this.OffsetChar) to:out
     ok
   ),
 

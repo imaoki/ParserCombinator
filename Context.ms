@@ -86,7 +86,7 @@ struct ContextStruct (
   */
   public fn PrintDebugInfo parserName startOffset result = (
     local resultText = with printAllElements true result as String
-    resultText = ::stringUtility.EscapeBackslash resultText
+    resultText = ::std.StringUtility.EscapeBackslash resultText
     if classOf result == String do (
       resultText = "\"" + resultText + "\""
     )
@@ -116,11 +116,11 @@ struct ContextStruct (
     if classOf errorType == String do (
       format "[syntax %]at \"%\" in position:% line:%, expected:%, in line:%\n" \
           errorType \
-          (::stringUtility.EscapeBackslash this.lastError.OffsetChar) \
+          (::std.StringUtility.EscapeBackslash this.lastError.OffsetChar) \
           this.lastError.Offset \
           this.lastError.LineNumber \
           this.lastError.Expected \
-          (::stringUtility.EscapeBackslash this.lastError.LineText)
+          (::std.StringUtility.EscapeBackslash this.lastError.LineText)
     )
     ok
   ),
@@ -271,15 +271,15 @@ struct ContextStruct (
 
       this.Seek start
       local startChar = this.Read 1
-      startChar = ::stringUtility.EscapeBackslash startChar
+      startChar = ::std.StringUtility.EscapeBackslash startChar
 
       this.Seek end
       local endChar = this.Read 1
-      endChar = ::stringUtility.EscapeBackslash endChar
+      endChar = ::std.StringUtility.EscapeBackslash endChar
 
       this.Seek start
       local lineText = this.Read (end - start + 1)
-      lineText = ::stringUtility.EscapeBackslash lineText
+      lineText = ::std.StringUtility.EscapeBackslash lineText
 
       format "%    [%-%]:Start:\"%\" End:\"%\" Line:\"%\"\n" \
           indent start end startChar endChar lineText to:out

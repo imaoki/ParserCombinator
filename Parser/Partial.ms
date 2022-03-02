@@ -41,10 +41,10 @@ struct PartialStruct (
     format "%  Debug:%\n" indent this.Debug to:out
     format "%  Callback:%\n" indent (classOf this.Callback) to:out
     if classOf this.CallbackParameter == String then (
-      format "%  CallbackParameter:%\n" indent (::stringUtility.EscapeBackslash this.CallbackParameter) to:out
+      format "%  CallbackParameter:%\n" indent (::std.StringUtility.EscapeBackslash this.CallbackParameter) to:out
     )
     else (
-      format "%  CallbackParameter:%\n" indent (::stringUtility.ToPascalCase this.CallbackParameter) to:out
+      format "%  CallbackParameter:%\n" indent (::std.StringUtility.ToPascalCase this.CallbackParameter) to:out
     )
     format "%  Parser:\n" indent to:out
     this.Parser.Dump indent:(indent + "    ") out:out

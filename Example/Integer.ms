@@ -157,7 +157,7 @@ struct IntegerStruct (
   ),
 
   on Create do (
-    local pathUtility = ::PathUtilityStruct (getSourceFileName())
+    local pathUtility = ::std.PathUtilityStruct (getSourceFileName())
     this.pc = (fileIn (pathUtility.GetFullPath @"..\ParserCombinator.ms"))()
     this.parser = this.expr()
   )

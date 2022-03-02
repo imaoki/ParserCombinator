@@ -470,7 +470,7 @@ struct ParserCombinatorStruct (
   private fn joinArray separator result = (
     if classOf result == Array then (
       result = this.flattenArray -1 result asString:true
-      ::stringUtility.Join result separator:separator
+      ::std.StringUtility.Join result separator:separator
     )
     else (
       result

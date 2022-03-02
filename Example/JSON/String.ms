@@ -180,7 +180,7 @@ struct StringStruct (
   private fn codePointAsChar result = (
     if classOf result == String then (
       local codePoint = ("0x" + result) as Integer
-      ::stringUtility.FromCodePoint #(codePoint)
+      ::std.StringUtility.FromCodePoint #(codePoint)
     )
     else (
       ::FailureStruct()
@@ -247,7 +247,7 @@ struct StringStruct (
   ),
 
   on Create do (
-    local pathUtility = ::PathUtilityStruct (getSourceFileName())
+    local pathUtility = ::std.PathUtilityStruct (getSourceFileName())
     this.pc = (fileIn (pathUtility.GetFullPath @"..\..\ParserCombinator.ms"))()
     this.parser = this.expr()
   )

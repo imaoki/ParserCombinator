@@ -67,14 +67,14 @@ struct CacheStruct (
     format "%CacheStruct\n" indent to:out
     format "%  data:%\n" indent this.data.Count to:out
     for key in this.data.Keys do (
-      local keyText = ::stringUtility.EscapeBackslash key
+      local keyText = ::std.StringUtility.EscapeBackslash key
       local valueText = this.data[key]
       if classOf v == String then (
-        valueText = ::stringUtility.EscapeBackslash valueText
+        valueText = ::std.StringUtility.EscapeBackslash valueText
       )
       else (
-        valueText = ::stringUtility.ToPascalCase valueText
-        valueText = ::stringUtility.EscapeBackslash valueText
+        valueText = ::std.StringUtility.ToPascalCase valueText
+        valueText = ::std.StringUtility.EscapeBackslash valueText
       )
       format "%    [\"%\"]:\"%\"\n" indent keyText valueText to:out
     )

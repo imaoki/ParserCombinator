@@ -141,7 +141,7 @@ struct MemoizationStruct (
   ),
 
   on Create do (
-    local pathUtility = ::PathUtilityStruct (getSourceFileName())
+    local pathUtility = ::std.PathUtilityStruct (getSourceFileName())
     this.pc = (fileIn (pathUtility.GetFullPath @"..\ParserCombinator.ms"))()
     this.parserMemoized = this.aMemoize()
     this.parserNotMemo = this.aNotMemo()

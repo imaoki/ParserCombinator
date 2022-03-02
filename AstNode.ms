@@ -36,12 +36,12 @@ struct AstNodeStruct (
           format "%)%\n" indent delimiter to:out
         )
         (String): (
-          local valueText = ::stringUtility.EscapeBackslash v
+          local valueText = ::std.StringUtility.EscapeBackslash v
           format "\"%\"%\n" valueText delimiter to:out
         )
         default: (
-          local valueText = ::stringUtility.ToPascalCase v
-          valueText = ::stringUtility.EscapeBackslash valueText
+          local valueText = ::std.StringUtility.ToPascalCase v
+          valueText = ::std.StringUtility.EscapeBackslash valueText
           format "%%\n" valueText delimiter to:out
         )
       )
@@ -68,7 +68,7 @@ struct AstNodeStruct (
   */
   public fn Dump indent:"" out:listener delimiter:"" = (
     format "%AstNodeStruct" indent to:out
-    format " Type:%" (::stringUtility.ToPascalCase this.Type) to:out
+    format " Type:%" (::std.StringUtility.ToPascalCase this.Type) to:out
     if this.isAstNode this.Value then (
       format " Value:(\n" to:out
       this.dumpValue this.Value (indent + "  ") out delimiter:""

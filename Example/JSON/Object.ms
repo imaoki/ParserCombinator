@@ -181,7 +181,7 @@ struct ObjectStruct (
   ),
 
   on Create do (
-    local pathUtility = ::PathUtilityStruct (getSourceFileName())
+    local pathUtility = ::std.PathUtilityStruct (getSourceFileName())
     this.pc = (fileIn (pathUtility.GetFullPath @"..\..\ParserCombinator.ms"))()
     this.stringParser = (fileIn "String.ms")()
     this.valueParserDef = fileIn "Value.ms"
