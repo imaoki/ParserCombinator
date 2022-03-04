@@ -138,5 +138,3 @@ struct AstNodeStruct (
 
   on Create do ()
 )
--- format "[define]::AstNodeStruct\n"
--- ::AstNodeStruct
