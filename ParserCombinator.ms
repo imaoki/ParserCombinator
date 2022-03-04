@@ -56,6 +56,7 @@ struct ParserCombinatorStruct (
   public fn EOS debug:false = (),
   public fn Expect parser expected:"" debug:false = (),
   public fn Flatten parser depth:-1 debug:false = (),
+  public fn Install = (),
   public fn IsNot parser debug:false = (),
   public fn ItemAt parser index debug:false = (),
   public fn Join parser separator:"" debug:false = (),
@@ -71,6 +72,7 @@ struct ParserCombinatorStruct (
   public fn Skip parser debug:false = (),
   public fn SOS debug:false = (),
   public fn Token pattern ignoreCase:true debug:false = (),
+  public fn Uninstall = (),
   public fn UpperAlphabet debug:false = (),
 
   private fn arrayItemAt index result = (),
@@ -223,6 +225,22 @@ struct ParserCombinatorStruct (
   */
   public fn Flatten parser depth:-1 debug:false = (
     this.Partial this.flattenArray depth parser debug:debug
+  ),
+
+  /*-
+  インストールする。
+  @returns <OkClass>
+  @remarks 静的メソッド。
+  */
+  public fn Install = (
+    fileIn @"Model\AstNode.ms"
+    fileIn @"Model\Failure.ms"
+    fileIn @"Model\NotCollect.ms"
+    if isProperty ::startupLoader "RegisterFile" do (
+      ::startupLoader.RegisterFile (getSourceFileName()) installer:true
+    )
+    format "[install]::ParserCombinatorStruct\n"
+    ok
   ),
 
   /*-
@@ -398,6 +416,19 @@ struct ParserCombinatorStruct (
   */
   public fn Token pattern ignoreCase:true debug:false = (
     this.tokenDef pattern ignoreCase Debug:debug
+  ),
+
+  /*-
+  アンインストールする。
+  @returns <OkClass>
+  @remarks 静的メソッド。
+  */
+  public fn Uninstall = (
+    if isProperty ::startupLoader "UnregisterFile" do (
+      ::startupLoader.UnregisterFile (getSourceFileName())
+    )
+    format "[uninstall]::ParserCombinatorStruct\n"
+    ok
   ),
 
   /*-
