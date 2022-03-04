@@ -6,6 +6,14 @@ struct CacheStruct (
   /*- @prop <Dictionary Key:<String> Value:<Any>> */
   private data = Dictionary #String,
 
+  /*
+  public fn Clear = (),
+  public fn Read parser start = (),
+  public fn Write parser start end result = (),
+
+  private fn generateKey parser start = (),
+  */
+
   /*-
   キャッシュをクリアする。
   @returns <OkClass>

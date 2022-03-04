@@ -42,6 +42,44 @@ struct ParserCombinatorStruct (
   /*- @prop <StructDef:TokenStruct> */
   private tokenDef,
 
+  /*
+  public fn Alphabet debug:false = (),
+  public fn AndAlso parsers debug:false = (),
+  public fn AnyChar debug:false = (),
+  public fn Boundary debug:false = (),
+  public fn Char pattern except:false debug:false = (),
+  public fn Choice parsers debug:false = (),
+  public fn Context input = (),
+  public fn Delay callback debug:false = (),
+  public fn Diff parserA parserB debug:false = (),
+  public fn Digit debug:false = (),
+  public fn EOS debug:false = (),
+  public fn Expect parser expected:"" debug:false = (),
+  public fn Flatten parser depth:-1 debug:false = (),
+  public fn IsNot parser debug:false = (),
+  public fn ItemAt parser index debug:false = (),
+  public fn Join parser separator:"" debug:false = (),
+  public fn List parser separator debug:false = (),
+  public fn Lookahead parsers debug:false = (),
+  public fn LowerAlphabet debug:false = (),
+  public fn Many parser minCount:0 maxCount:2147483647 debug:false = (),
+  public fn Map parser callback debug:false = (),
+  public fn Memo parser debug:false = (),
+  public fn Option parser debug:false = (),
+  public fn Partial callback callbackParameter parser debug:false = (),
+  public fn Sequence parsers debug:false = (),
+  public fn Skip parser debug:false = (),
+  public fn SOS debug:false = (),
+  public fn Token pattern ignoreCase:true debug:false = (),
+  public fn UpperAlphabet debug:false = (),
+
+  private fn arrayItemAt index result = (),
+  private fn asNotCollect result = (),
+  private fn cons result = (),
+  private fn flattenArray depth result asString:false d:1 = (),
+  private fn joinArray separator result = (),
+  */
+
   /*-
   アルファベットに一致するパーサ。
   @param debug: <BooleanClass>

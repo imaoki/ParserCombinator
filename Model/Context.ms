@@ -16,6 +16,26 @@ struct ContextStruct (
   /*- @prop <StringStream> */
   private ss = StringStream "",
 
+  /*
+  public fn EOS = (),
+  public fn GetLastError = (),
+  public fn GetLineNumber offset = (),
+  public fn GetOffset = (),
+  public fn LogError errorOffset expected = (),
+  public fn PrintDebugInfo parserName startOffset result = (),
+  public fn PrintError result = (),
+  public fn Read count = (),
+  public fn ReadCache parser = (),
+  public fn Seek offset = (),
+  public fn SetStream input = (),
+  public fn SOS = (),
+  public fn WriteCache parser start end result = (),
+
+  private fn getLineText lineNumber = (),
+  private fn initialize = (),
+  private fn setLineRanges = (),
+  */
+
   /*-
   現在の位置がストリームの終端にあるかどうか。
   @returns <BooleanClass>
