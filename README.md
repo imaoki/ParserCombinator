@@ -10,15 +10,29 @@
 
 `3ds Max 2022.3 Update`
 
-## スクリプトの実行とスタートアップへの登録
+## インストール
 
-01. `Standard\register.ms`を実行する。
+01. 依存スクリプトがある場合は予めインストールしておく。
 
-02. `ParserCombinator\register.ms`を実行する。
+02. `install.ms`を実行する。
 
-## スタートアップから登録解除する
+## アンインストール
 
-`unregister.ms`を実行する。
+`uninstall.ms`を実行する。
+
+## スタンドアローン版
+
+### インストール
+
+01. 依存スクリプトがある場合は予めインストールしておく。
+
+02. `Distribution\ParserCombinator.min.ms`を実行する。
+
+### アンインストール
+
+```maxscript
+::ParserCombinatorStruct.Uninstall()
+```
 
 ## 使い方
 
