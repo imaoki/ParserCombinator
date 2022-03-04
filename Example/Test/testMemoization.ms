@@ -15,8 +15,8 @@
 
   format "[run %]@\"%\"\n" nowTime currentFile
   /* Setup Start ------------------------------------------------------------ */
-  local failure = ::FailureStruct()
-  local notCollect = ::NotCollectStruct()
+  local failure = (fileIn (pathUtility.GetFullPath @"..\..\Model\Failure.ms"))()
+  local notCollect = (fileIn (pathUtility.GetFullPath @"..\..\Model\NotCollect.ms"))()
 
   testDef = fileIn (pathUtility.GetFullPath @"..\Memoization.ms")
   testObj = testDef ShowError:false

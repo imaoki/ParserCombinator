@@ -512,7 +512,7 @@ struct ParserCombinatorStruct (
     this.boundaryDef = fileIn @"Parser\Boundary.ms"
     this.charDef = fileIn @"Parser\Char.ms"
     this.choiceDef = fileIn @"Parser\Choice.ms"
-    this.contextDef = fileIn "Context.ms"
+    this.contextDef = fileIn @"Model\Context.ms"
     this.delayDef = fileIn @"Parser\Delay.ms"
     this.eosDef = fileIn @"Parser\Eos.ms"
     this.expectDef = fileIn @"Parser\Expect.ms"
@@ -528,5 +528,5 @@ struct ParserCombinatorStruct (
     this.tokenDef = fileIn @"Parser\Token.ms"
   )
 )
-format "[define]::ParserCombinatorStruct\n"
-::ParserCombinatorStruct
+-- format "[define]::ParserCombinatorStruct\n"
+-- ::ParserCombinatorStruct

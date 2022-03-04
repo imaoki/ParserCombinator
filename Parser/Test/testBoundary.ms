@@ -16,9 +16,9 @@
   format "[run %]@\"%\"\n" nowTime currentFile
   /* Setup Start ------------------------------------------------------------ */
   local context
-  local failure = ::FailureStruct()
-  local notCollect = ::NotCollectStruct()
-  local contextDef = fileIn (pathUtility.GetFullPath @"..\..\Context.ms")
+  local failure = (fileIn (pathUtility.GetFullPath @"..\..\Model\Failure.ms"))()
+  local notCollect = (fileIn (pathUtility.GetFullPath @"..\..\Model\NotCollect.ms"))()
+  local contextDef = fileIn (pathUtility.GetFullPath @"..\..\Model\Context.ms")
 
   testDef = fileIn (pathUtility.GetFullPath @"..\Boundary.ms")
   testObj = testDef Debug:false

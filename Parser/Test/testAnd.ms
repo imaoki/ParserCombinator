@@ -16,12 +16,12 @@
   format "[run %]@\"%\"\n" nowTime currentFile
   /* Setup Start ------------------------------------------------------------ */
   local context
-  local failure = ::FailureStruct()
-  local notCollect = ::NotCollectStruct()
+  local failure = (fileIn (pathUtility.GetFullPath @"..\..\Model\Failure.ms"))()
+  local notCollect = (fileIn (pathUtility.GetFullPath @"..\..\Model\NotCollect.ms"))()
   local anyCharDef = fileIn (pathUtility.GetFullPath @"..\AnyChar.ms")
   local charDef = fileIn (pathUtility.GetFullPath @"..\Char.ms")
   local choiceDef = fileIn (pathUtility.GetFullPath @"..\Choice.ms")
-  local contextDef = fileIn (pathUtility.GetFullPath @"..\..\Context.ms")
+  local contextDef = fileIn (pathUtility.GetFullPath @"..\..\Model\Context.ms")
   local isNotDef = fileIn (pathUtility.GetFullPath @"..\IsNot.ms")
   local manyDef = fileIn (pathUtility.GetFullPath @"..\Many.ms")
   local tokenDef = fileIn (pathUtility.GetFullPath @"..\Token.ms")

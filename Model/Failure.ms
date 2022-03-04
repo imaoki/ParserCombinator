@@ -34,5 +34,5 @@ struct FailureStruct (
 
   on Create do ()
 )
-format "[define]::FailureStruct\n"
-::FailureStruct
+-- format "[define]::FailureStruct\n"
+-- ::FailureStruct

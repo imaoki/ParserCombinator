@@ -16,8 +16,8 @@
   format "[run %]@\"%\"\n" nowTime currentFile
   /* Setup Start ------------------------------------------------------------ */
   local context
-  local failure = ::FailureStruct()
-  local notCollect = ::NotCollectStruct()
+  local failure = (fileIn (pathUtility.GetFullPath @"..\Model\Failure.ms"))()
+  local notCollect = (fileIn (pathUtility.GetFullPath @"..\Model\NotCollect.ms"))()
   local parser
 
   testDef = fileIn (pathUtility.GetFullPath @"..\ParserCombinator.ms")
