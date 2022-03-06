@@ -1,4 +1,4 @@
-/*! © 2021 imaoki | MIT License | https://github.com/imaoki */
+/*! © 2022 imaoki | MIT License | https://github.com/imaoki */
 /*-
 ワード境界に一致するパーサ。
 @remarks 現在位置の前後において一方が正規表現の`\w`（`[a-zA-Z_0-9]`）、もう一方が`\W`に一致する場合をワード境界とみなす。

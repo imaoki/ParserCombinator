@@ -1,4 +1,4 @@
-/*! © 2021 imaoki | MIT License | https://github.com/imaoki */
+/*! © 2022 imaoki | MIT License | https://github.com/imaoki */
 /*-
 与えられたパーサが全て成功した時、最後のパーサの結果を返すパーサ。
 @remarks

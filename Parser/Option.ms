@@ -1,4 +1,4 @@
-/*! © 2021 imaoki | MIT License | https://github.com/imaoki */
+/*! © 2022 imaoki | MIT License | https://github.com/imaoki */
 /*-
 与えられたパーサが失敗した場合でも`NotCollectStruct`を返す（成功となる）パーサ。
 */

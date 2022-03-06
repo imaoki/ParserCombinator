@@ -1,4 +1,4 @@
-/*! © 2021 imaoki | MIT License | https://github.com/imaoki */
+/*! © 2022 imaoki | MIT License | https://github.com/imaoki */
 /*-
 入力したパーサが成功すれば失敗し、失敗すれば成功するパーサ。
 @remarks 解析対象の文字列を消費しない。

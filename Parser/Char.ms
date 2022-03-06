@@ -1,4 +1,4 @@
-/*! © 2021 imaoki | MIT License | https://github.com/imaoki */
+/*! © 2022 imaoki | MIT License | https://github.com/imaoki */
 /*-
 入力文字列に含まれる一文字に一致するパーサ。
 @remarks 大文字と小文字を区別する。

@@ -1,4 +1,4 @@
-/*! © 2021 imaoki | MIT License | https://github.com/imaoki */
+/*! © 2022 imaoki | MIT License | https://github.com/imaoki */
 /*-
 与えられたパーサを失敗するまで繰り返し、結果を配列として返すパーサ。
 */

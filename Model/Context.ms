@@ -1,4 +1,4 @@
-/*! © 2021 imaoki | MIT License | https://github.com/imaoki */
+/*! © 2022 imaoki | MIT License | https://github.com/imaoki */
 /*-
 解析対象の文字列を操作する。
 @remarks 改行コードは全て`LF`に変換される。

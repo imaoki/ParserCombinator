@@ -1,4 +1,4 @@
-/*! © 2021 imaoki | MIT License | https://github.com/imaoki */
+/*! © 2022 imaoki | MIT License | https://github.com/imaoki */
 /*-
 与えられたパーサの結果を配列として返すパーサ。
 @remarks パーサが一つでも失敗した場合はこのパーサも失敗する。

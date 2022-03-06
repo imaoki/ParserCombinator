@@ -1,4 +1,4 @@
-/*! © 2021 imaoki | MIT License | https://github.com/imaoki */
+/*! © 2022 imaoki | MIT License | https://github.com/imaoki */
 /*-
 パース結果を加工する関数を部分適用するためのパーサ。
 @remarks 加工用関数は第一引数に加工用のパラメータ、第二引数にパース結果を取ること。
