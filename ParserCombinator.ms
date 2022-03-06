@@ -236,7 +236,7 @@ struct ParserCombinatorStruct (
     fileIn @"Model\AstNode.ms"
     fileIn @"Model\Failure.ms"
     fileIn @"Model\NotCollect.ms"
-    if isProperty ::startupLoader "RegisterFile" do (
+    if isProperty ::startupLoader #RegisterFile do (
       ::startupLoader.RegisterFile (getSourceFileName()) installer:true
     )
     format "[install]::ParserCombinatorStruct\n"
@@ -424,7 +424,7 @@ struct ParserCombinatorStruct (
   @remarks 静的メソッド。
   */
   public fn Uninstall = (
-    if isProperty ::startupLoader "UnregisterFile" do (
+    if isProperty ::startupLoader #UnregisterFile do (
       ::startupLoader.UnregisterFile (getSourceFileName())
     )
     format "[uninstall]::ParserCombinatorStruct\n"
