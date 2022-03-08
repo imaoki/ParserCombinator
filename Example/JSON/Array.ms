@@ -123,8 +123,8 @@ struct ArrayStruct (
   on Create do (
     local pathUtility = ::std.PathUtilityStruct (getSourceFileName())
     this.pc = (fileIn (pathUtility.GetFullPath @"..\..\ParserCombinator.ms"))()
-    this.valueParserDef = fileIn "Value.ms"
-    this.whiteSpaceParser = (fileIn "WhiteSpace.ms")()
+    this.valueParserDef = fileIn @"Value.ms"
+    this.whiteSpaceParser = (fileIn @"WhiteSpace.ms")()
     this.parser = this.expr()
   )
 )

@@ -66,6 +66,6 @@ struct BoundaryStruct (
   ),
 
   on Create do (
-    this.charParser = (fileIn "Char.ms") "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789"
+    this.charParser = (fileIn @"Char.ms") "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789"
   )
 )
