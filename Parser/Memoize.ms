@@ -2,7 +2,7 @@
 /*-
 パーサをメモ化する。
 */
-struct Memoize (
+struct MemoizeStruct (
   /*- @prop <Struct> */
   public Parser,
   /*- @prop <BooleanClass> */
@@ -26,12 +26,12 @@ struct Memoize (
       local endOffset = context.GetOffset()
       context.WriteCache this.Parser startOffset endOffset result
     )
-    if this.Debug do context.PrintDebugInfo "Memoize" startOffset result
+    if this.Debug do context.PrintDebugInfo "MemoizeStruct" startOffset result
     result
   ),
 
   /*- @returns <Name> */
-  public fn StructName = #Memoize,
+  public fn StructName = #MemoizeStruct,
 
   /*-
   @param indent: <String>
@@ -39,7 +39,7 @@ struct Memoize (
   @returns <OkClass>
   */
   public fn Dump indent:"" out:listener = (
-    format "%Memoize\n" indent to:out
+    format "%MemoizeStruct\n" indent to:out
     format "%  Debug:%\n" indent this.Debug to:out
     format "%  Parser:\n" indent to:out
     this.Parser.Dump indent:(indent + "    ") out:out
