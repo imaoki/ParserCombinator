@@ -81,7 +81,7 @@ struct CharStruct (
   ),
 
   on Create do (
-    this.anyCharParser = (fileIn @"AnyChar.ms")()
+    this.anyCharParser = (::parserCombinatorDefinitionPool[@"Parser\AnyChar.ms"])()
     this.patternChars = ::std.StringUtility.ToCharArray this.Pattern
   )
 )

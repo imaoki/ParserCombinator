@@ -1,4 +1,5 @@
 /*! © 2022 imaoki | MIT License | https://github.com/imaoki */
+fileIn @"definitionPool.ms"
 /*-
 再帰下降構文解析のためのパーサコンビネータ。
 */
@@ -233,9 +234,9 @@ struct ParserCombinatorStruct (
   @remarks 静的メソッド。
   */
   public fn Install = (
-    fileIn @"Model\AstNode.ms"
-    fileIn @"Model\Failure.ms"
-    fileIn @"Model\NotCollect.ms"
+    ::AstNodeStruct = ::parserCombinatorDefinitionPool[@"Model\AstNode.ms"]
+    ::FailureStruct = ::parserCombinatorDefinitionPool[@"Model\Failure.ms"]
+    ::NotCollectStruct = ::parserCombinatorDefinitionPool[@"Model\NotCollect.ms"]
     if isProperty ::startupLoader #RegisterFile do (
       ::startupLoader.RegisterFile (getSourceFileName()) installer:true
     )
@@ -576,24 +577,24 @@ struct ParserCombinatorStruct (
   ),
 
   on Create do (
-    this.andDef = fileIn @"Parser\And.ms"
-    this.anyCharDef = fileIn @"Parser\AnyChar.ms"
-    this.boundaryDef = fileIn @"Parser\Boundary.ms"
-    this.charDef = fileIn @"Parser\Char.ms"
-    this.choiceDef = fileIn @"Parser\Choice.ms"
-    this.contextDef = fileIn @"Model\Context.ms"
-    this.delayDef = fileIn @"Parser\Delay.ms"
-    this.eosDef = fileIn @"Parser\Eos.ms"
-    this.expectDef = fileIn @"Parser\Expect.ms"
-    this.isNotDef = fileIn @"Parser\IsNot.ms"
-    this.lookaheadDef = fileIn @"Parser\Lookahead.ms"
-    this.manyDef = fileIn @"Parser\Many.ms"
-    this.mapDef = fileIn @"Parser\Map.ms"
-    this.memoizeDef = fileIn @"Parser\Memoize.ms"
-    this.optionDef = fileIn @"Parser\Option.ms"
-    this.partialDef = fileIn @"Parser\Partial.ms"
-    this.sequenceDef = fileIn @"Parser\Sequence.ms"
-    this.sosDef = fileIn @"Parser\SOS.ms"
-    this.tokenDef = fileIn @"Parser\Token.ms"
+    this.andDef = ::parserCombinatorDefinitionPool[@"Parser\And.ms"]
+    this.anyCharDef = ::parserCombinatorDefinitionPool[@"Parser\AnyChar.ms"]
+    this.boundaryDef = ::parserCombinatorDefinitionPool[@"Parser\Boundary.ms"]
+    this.charDef = ::parserCombinatorDefinitionPool[@"Parser\Char.ms"]
+    this.choiceDef = ::parserCombinatorDefinitionPool[@"Parser\Choice.ms"]
+    this.contextDef = ::parserCombinatorDefinitionPool[@"Model\Context.ms"]
+    this.delayDef = ::parserCombinatorDefinitionPool[@"Parser\Delay.ms"]
+    this.eosDef = ::parserCombinatorDefinitionPool[@"Parser\Eos.ms"]
+    this.expectDef = ::parserCombinatorDefinitionPool[@"Parser\Expect.ms"]
+    this.isNotDef = ::parserCombinatorDefinitionPool[@"Parser\IsNot.ms"]
+    this.lookaheadDef = ::parserCombinatorDefinitionPool[@"Parser\Lookahead.ms"]
+    this.manyDef = ::parserCombinatorDefinitionPool[@"Parser\Many.ms"]
+    this.mapDef = ::parserCombinatorDefinitionPool[@"Parser\Map.ms"]
+    this.memoizeDef = ::parserCombinatorDefinitionPool[@"Parser\Memoize.ms"]
+    this.optionDef = ::parserCombinatorDefinitionPool[@"Parser\Option.ms"]
+    this.partialDef = ::parserCombinatorDefinitionPool[@"Parser\Partial.ms"]
+    this.sequenceDef = ::parserCombinatorDefinitionPool[@"Parser\Sequence.ms"]
+    this.sosDef = ::parserCombinatorDefinitionPool[@"Parser\SOS.ms"]
+    this.tokenDef = ::parserCombinatorDefinitionPool[@"Parser\Token.ms"]
   )
 )

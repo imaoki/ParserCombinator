@@ -15,6 +15,7 @@
 
   format "[run %]@\"%\"\n" nowTime currentFile
   /* Setup Start ------------------------------------------------------------ */
+  fileIn (getFullPath @"..\..\definitionPool.ms")
   local errorDef = fileIn (pathUtility.GetFullPath @"..\Error.ms")
 
   testDef = fileIn (pathUtility.GetFullPath @"..\Context.ms")

@@ -328,7 +328,7 @@ struct ContextStruct (
     if classOf this._CP1_ == String do (
       this.SetStream this._CP1_
     )
-    this.cache = (fileIn @"Cache.ms")()
-    this.lastError = (fileIn @"Error.ms")()
+    this.cache = (::parserCombinatorDefinitionPool[@"Model\Cache.ms"])()
+    this.lastError = (::parserCombinatorDefinitionPool[@"Model\Error.ms"])()
   )
 )
