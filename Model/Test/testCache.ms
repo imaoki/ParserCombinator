@@ -15,7 +15,7 @@
 
   format "[run %]@\"%\"\n" nowTime currentFile
   /* Setup Start ------------------------------------------------------------ */
-  fileIn (getFullPath @"..\..\definitionPool.ms")
+  fileIn (pathUtility.GetFullPath @"..\..\definitionPool.ms")
   local charDef = fileIn (pathUtility.GetFullPath @"..\..\Parser\Char.ms")
   local eosDef = fileIn (pathUtility.GetFullPath @"..\..\Parser\EOS.ms")
   local manyDef = fileIn (pathUtility.GetFullPath @"..\..\Parser\Many.ms")
