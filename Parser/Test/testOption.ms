@@ -17,12 +17,12 @@
   /* Setup Start ------------------------------------------------------------ */
   fileIn (pathUtility.GetFullPath @"..\..\definitionPool.ms")
   local context
-  local failure = (fileIn (pathUtility.GetFullPath @"..\..\Model\Failure.ms"))()
-  local notCollect = (fileIn (pathUtility.GetFullPath @"..\..\Model\NotCollect.ms"))()
-  local charDef = fileIn (pathUtility.GetFullPath @"..\Char.ms")
-  local contextDef = fileIn (pathUtility.GetFullPath @"..\..\Model\Context.ms")
+  local failure = (::parserCombinatorDefinitionPool[@"Model\Failure.ms"])()
+  local notCollect = (::parserCombinatorDefinitionPool[@"Model\NotCollect.ms"])()
+  local charDef = ::parserCombinatorDefinitionPool[@"Parser\Char.ms"]
+  local contextDef = ::parserCombinatorDefinitionPool[@"Model\Context.ms"]
 
-  testDef = fileIn (pathUtility.GetFullPath @"..\Option.ms")
+  testDef = ::parserCombinatorDefinitionPool[@"Parser\Option.ms"]
   /* Setup End -------------------------------------------------------------- */
   sw.Start()
   /* Test Start ------------------------------------------------------------- */

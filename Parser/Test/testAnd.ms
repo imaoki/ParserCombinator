@@ -17,17 +17,17 @@
   /* Setup Start ------------------------------------------------------------ */
   fileIn (pathUtility.GetFullPath @"..\..\definitionPool.ms")
   local context
-  local failure = (fileIn (pathUtility.GetFullPath @"..\..\Model\Failure.ms"))()
-  local notCollect = (fileIn (pathUtility.GetFullPath @"..\..\Model\NotCollect.ms"))()
-  local anyCharDef = fileIn (pathUtility.GetFullPath @"..\AnyChar.ms")
-  local charDef = fileIn (pathUtility.GetFullPath @"..\Char.ms")
-  local choiceDef = fileIn (pathUtility.GetFullPath @"..\Choice.ms")
-  local contextDef = fileIn (pathUtility.GetFullPath @"..\..\Model\Context.ms")
-  local isNotDef = fileIn (pathUtility.GetFullPath @"..\IsNot.ms")
-  local manyDef = fileIn (pathUtility.GetFullPath @"..\Many.ms")
-  local tokenDef = fileIn (pathUtility.GetFullPath @"..\Token.ms")
+  local failure = (::parserCombinatorDefinitionPool[@"Model\Failure.ms"])()
+  local notCollect = (::parserCombinatorDefinitionPool[@"Model\NotCollect.ms"])()
+  local anyCharDef = ::parserCombinatorDefinitionPool[@"Parser\AnyChar.ms"]
+  local charDef = ::parserCombinatorDefinitionPool[@"Parser\Char.ms"]
+  local choiceDef = ::parserCombinatorDefinitionPool[@"Parser\Choice.ms"]
+  local contextDef = ::parserCombinatorDefinitionPool[@"Model\Context.ms"]
+  local isNotDef = ::parserCombinatorDefinitionPool[@"Parser\IsNot.ms"]
+  local manyDef = ::parserCombinatorDefinitionPool[@"Parser\Many.ms"]
+  local tokenDef = ::parserCombinatorDefinitionPool[@"Parser\Token.ms"]
 
-  testDef = fileIn (pathUtility.GetFullPath @"..\And.ms")
+  testDef = ::parserCombinatorDefinitionPool[@"Parser\And.ms"]
   /* Setup End -------------------------------------------------------------- */
   sw.Start()
   /* Test Start ------------------------------------------------------------- */

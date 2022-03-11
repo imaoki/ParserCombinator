@@ -16,9 +16,9 @@
   format "[run %]@\"%\"\n" nowTime currentFile
   /* Setup Start ------------------------------------------------------------ */
   fileIn (pathUtility.GetFullPath @"..\..\definitionPool.ms")
-  local errorDef = fileIn (pathUtility.GetFullPath @"..\Error.ms")
+  local errorDef = ::parserCombinatorDefinitionPool[@"Model\Error.ms"]
 
-  testDef = fileIn (pathUtility.GetFullPath @"..\Context.ms")
+  testDef = ::parserCombinatorDefinitionPool[@"Model\Context.ms"]
   /* Setup End -------------------------------------------------------------- */
   sw.Start()
   /* Test Start ------------------------------------------------------------- */

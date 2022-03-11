@@ -17,11 +17,11 @@
   /* Setup Start ------------------------------------------------------------ */
   fileIn (pathUtility.GetFullPath @"..\..\definitionPool.ms")
   local context
-  local failure = (fileIn (pathUtility.GetFullPath @"..\..\Model\Failure.ms"))()
-  local notCollect = (fileIn (pathUtility.GetFullPath @"..\..\Model\NotCollect.ms"))()
-  local charDef = fileIn (pathUtility.GetFullPath @"..\Char.ms")
-  local contextDef = fileIn (pathUtility.GetFullPath @"..\..\Model\Context.ms")
-  local tokenDef = fileIn (pathUtility.GetFullPath @"..\Token.ms")
+  local failure = (::parserCombinatorDefinitionPool[@"Model\Failure.ms"])()
+  local notCollect = (::parserCombinatorDefinitionPool[@"Model\NotCollect.ms"])()
+  local charDef = ::parserCombinatorDefinitionPool[@"Parser\Char.ms"]
+  local contextDef = ::parserCombinatorDefinitionPool[@"Model\Context.ms"]
+  local tokenDef = ::parserCombinatorDefinitionPool[@"Parser\Token.ms"]
 
   local asBoolean
   fn asBoolean result = (
@@ -33,7 +33,7 @@
     )
   )
 
-  testDef = fileIn (pathUtility.GetFullPath @"..\Map.ms")
+  testDef = ::parserCombinatorDefinitionPool[@"Parser\Map.ms"]
   /* Setup End -------------------------------------------------------------- */
   sw.Start()
   /* Test Start ------------------------------------------------------------- */

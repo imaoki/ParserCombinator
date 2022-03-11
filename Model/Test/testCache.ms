@@ -16,13 +16,13 @@
   format "[run %]@\"%\"\n" nowTime currentFile
   /* Setup Start ------------------------------------------------------------ */
   fileIn (pathUtility.GetFullPath @"..\..\definitionPool.ms")
-  local charDef = fileIn (pathUtility.GetFullPath @"..\..\Parser\Char.ms")
-  local eosDef = fileIn (pathUtility.GetFullPath @"..\..\Parser\EOS.ms")
-  local manyDef = fileIn (pathUtility.GetFullPath @"..\..\Parser\Many.ms")
+  local charDef = ::parserCombinatorDefinitionPool[@"Parser\Char.ms"]
+  local eosDef = ::parserCombinatorDefinitionPool[@"Parser\EOS.ms"]
+  local manyDef = ::parserCombinatorDefinitionPool[@"Parser\Many.ms"]
 
   local parser
 
-  testDef = fileIn (pathUtility.GetFullPath @"..\Cache.ms")
+  testDef = ::parserCombinatorDefinitionPool[@"Model\Cache.ms"]
   testObj = testDef()
   /* Setup End -------------------------------------------------------------- */
   sw.Start()

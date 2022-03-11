@@ -17,8 +17,8 @@
   /* Setup Start ------------------------------------------------------------ */
   fileIn (pathUtility.GetFullPath @"..\definitionPool.ms")
   local context
-  local failure = (fileIn (pathUtility.GetFullPath @"..\Model\Failure.ms"))()
-  local notCollect = (fileIn (pathUtility.GetFullPath @"..\Model\NotCollect.ms"))()
+  local failure = (::parserCombinatorDefinitionPool[@"Model\Failure.ms"])()
+  local notCollect = (::parserCombinatorDefinitionPool[@"Model\NotCollect.ms"])()
   local parser
 
   testDef = fileIn (pathUtility.GetFullPath @"..\ParserCombinator.ms")
