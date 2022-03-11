@@ -247,8 +247,7 @@ struct StringStruct (
   ),
 
   on Create do (
-    local pathUtility = ::std.PathUtilityStruct (getSourceFileName())
-    this.pc = (fileIn (pathUtility.GetFullPath @"..\..\ParserCombinator.ms"))()
+    this.pc = ::ParserCombinatorStruct()
     this.parser = this.expr()
   )
 )

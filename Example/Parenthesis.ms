@@ -53,8 +53,9 @@ struct ParenthesisStruct (
   @returns <Struct>
   */
   private fn parenItem = (
+    local c = ")"
     this.pc.AndAlso #(
-      this.pc.IsNot (this.pc.Char ")"),
+      this.pc.IsNot (this.pc.Char c),
       this.item()
     )
   ),
@@ -100,8 +101,7 @@ struct ParenthesisStruct (
   ),
 
   on Create do (
-    local pathUtility = ::std.PathUtilityStruct (getSourceFileName())
-    this.pc = (fileIn (pathUtility.GetFullPath @"..\ParserCombinator.ms"))()
+    this.pc = ::ParserCombinatorStruct()
     this.parser = this.expr()
   )
 )

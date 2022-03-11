@@ -15,8 +15,9 @@
 
   format "[run %]@\"%\"\n" nowTime currentFile
   /* Setup Start ------------------------------------------------------------ */
-  local failure = (fileIn (pathUtility.GetFullPath @"..\..\Model\Failure.ms"))()
-  local notCollect = (fileIn (pathUtility.GetFullPath @"..\..\Model\NotCollect.ms"))()
+  fileIn (pathUtility.GetFullPath @"..\..\definitionPool.ms")
+  local failure = (::parserCombinatorDefinitionPool[@"Model\Failure.ms"])()
+  local notCollect = (::parserCombinatorDefinitionPool[@"Model\NotCollect.ms"])()
 
   testDef = fileIn (pathUtility.GetFullPath @"..\ArithmeticOperations.ms")
   testObj = testDef ShowError:false
