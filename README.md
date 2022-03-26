@@ -1,43 +1,59 @@
 # ParserCombinator
 
-再帰下降構文解析のためのパーサコンビネータ。
+Parser combinator for recursive descent parsing.
+<!-- 再帰下降構文解析のためのパーサコンビネータ。 -->
 
-## 要件
+## Requirements
+<!-- 要件 -->
 
 * [imaoki/Standard](https://github.com/imaoki/Standard)
 
-## 動作確認
+## Development Environment
+<!-- 開発環境 -->
 
 `3ds Max 2022.3 Update`
 
-## インストール
+## Install
+<!-- インストールする -->
 
-01. 依存スクリプトがある場合は予めインストールしておく。
+01. Dependent scripts should be installed beforehand.
+    <!-- 依存スクリプトは予めインストールしておく。 -->
 
-02. `install.ms`を実行する。
+02. Execute `install.ms`.
+    <!-- `install.ms`を実行する。 -->
 
-## アンインストール
+## Uninstall
+<!-- アンインストールする -->
 
-`uninstall.ms`を実行する。
+Execute `uninstall.ms`.
+<!-- `uninstall.ms`を実行する。 -->
 
-## スタンドアローン版
+## Standalone version
+<!-- スタンドアローン版 -->
 
-### インストール
+### Install
+<!-- インストールする -->
 
-01. 依存スクリプトがある場合は予めインストールしておく。
+01. Dependent scripts should be installed beforehand.
+    <!-- 依存スクリプトは予めインストールしておく。 -->
 
-02. `Distribution\ParserCombinator.min.ms`を実行する。
+02. Execute `Distribution\ParserCombinator.min.ms`.
+    <!-- `Distribution\ParserCombinator.min.ms`を実行する。 -->
 
-### アンインストール
+### Uninstall
+<!-- アンインストールする -->
 
 ```maxscript
 ::ParserCombinatorStruct.Uninstall()
 ```
 
-## 使い方
+## Usage
+<!-- 使い方 -->
 
-`Example`を参照。
+See `Example`.
+<!-- `Example`を参照。 -->
 
-## ライセンス
+## License
+<!-- ライセンス -->
 
 [MIT License](https://github.com/imaoki/ParserCombinator/blob/main/LICENSE)
