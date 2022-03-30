@@ -1,5 +1,8 @@
 # ParserCombinator
 
+<!-- [![GitHub release (latest by date)](https://img.shields.io/github/v/release/imaoki/ParserCombinator)](https://github.com/imaoki/ParserCombinator/releases/latest) -->
+[![GitHub](https://img.shields.io/github/license/imaoki/ParserCombinator)](https://github.com/imaoki/ParserCombinator/blob/main/LICENSE)
+
 Parser combinator for recursive descent parsing.
 <!-- 再帰下降構文解析のためのパーサコンビネータ。 -->
 
