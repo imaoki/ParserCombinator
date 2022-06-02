@@ -566,8 +566,8 @@ struct ParserCombinatorStruct (
     )
   ),
 
-  /*- @prop <String> バージョン番号。メジャー、マイナー、パッチの順。 */
-  private version = "1.1.1",
+  /*- @prop <Array[<Integer>]> バージョン番号。メジャー、マイナー、パッチの順。 */
+  private version = #(1, 1, 1),
 
   /*- @returns <Name> */
   public fn StructName = #ParserCombinatorStruct,
@@ -599,7 +599,7 @@ struct ParserCombinatorStruct (
   ),
 
   /*-
-  @returns <String>
+  @returns <Array[<Integer>]>
   */
   public fn GetVersion = (
     this.version
