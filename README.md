@@ -3,60 +3,60 @@
 <!-- [![GitHub release (latest by date)](https://img.shields.io/github/v/release/imaoki/ParserCombinator)](https://github.com/imaoki/ParserCombinator/releases/latest) -->
 [![GitHub](https://img.shields.io/github/license/imaoki/ParserCombinator)](https://github.com/imaoki/ParserCombinator/blob/main/LICENSE)
 
-Parser combinator for recursive descent parsing.
-<!-- 再帰下降構文解析のためのパーサコンビネータ。 -->
+再帰下降構文解析のためのパーサコンビネータ。
+<!-- Parser combinator for recursive descent parsing. -->
 
-## Requirements
-<!-- 要件 -->
+## ライセンス
+<!-- ## License -->
+
+[MIT License](https://github.com/imaoki/ParserCombinator/blob/main/LICENSE)
+
+## 要件
+<!-- ## Requirements -->
 
 * [imaoki/Standard](https://github.com/imaoki/Standard)
 
-## Development Environment
-<!-- 開発環境 -->
+## 開発環境
+<!-- ## Development Environment -->
 
 `3ds Max 2024`
 
-## Install
-<!-- インストールする -->
+## インストール
+<!-- ## Install -->
 
-01. Dependent scripts should be installed beforehand.
-    <!-- 依存スクリプトは予めインストールしておく。 -->
+01. 依存スクリプトは予めインストールしておく。
+    <!-- 01. Dependent scripts should be installed beforehand. -->
 
-02. Execute `install.ms`.
-    <!-- `install.ms`を実行する。 -->
+02. `install.ms`を実行する。
+    <!-- 02. Execute `install.ms`. -->
 
-## Uninstall
-<!-- アンインストールする -->
+## アンインストール
+<!-- ## Uninstall -->
 
-Execute `uninstall.ms`.
-<!-- `uninstall.ms`を実行する。 -->
+`uninstall.ms`を実行する。
+<!-- Execute `uninstall.ms`. -->
 
-## Standalone version
-<!-- スタンドアローン版 -->
+## 単一ファイル版
+<!-- ## Single File Version -->
 
-### Install
-<!-- インストールする -->
+### インストール
+<!-- ### Install -->
 
-01. Dependent scripts should be installed beforehand.
-    <!-- 依存スクリプトは予めインストールしておく。 -->
+01. 依存スクリプトは予めインストールしておく。
+    <!-- 01. Dependent scripts should be installed beforehand. -->
 
-02. Execute `Distribution\ParserCombinator.min.ms`.
-    <!-- `Distribution\ParserCombinator.min.ms`を実行する。 -->
+02. `Distribution\ParserCombinator.min.ms`を実行する。
+    <!-- 02. Execute `Distribution\ParserCombinator.min.ms`. -->
 
-### Uninstall
-<!-- アンインストールする -->
+### アンインストール
+<!-- ### Uninstall -->
 
 ```maxscript
 ::ParserCombinatorStruct.Uninstall()
 ```
 
-## Usage
-<!-- 使い方 -->
+## 使い方
+<!-- ## Usage -->
 
-See `Example`.
-<!-- `Example`を参照。 -->
-
-## License
-<!-- ライセンス -->
-
-[MIT License](https://github.com/imaoki/ParserCombinator/blob/main/LICENSE)
+`Example`を参照。
+<!-- See `Example`. -->
